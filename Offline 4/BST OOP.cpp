@@ -14,7 +14,7 @@ class BST
     node* Root=NULL;
 public:
 
-    node* search(node* root, int key);
+    bool search(node* root, int key);
     node* insert(node* Node, int key);
     node* deleteNode(node* Node, int key);
     void inorderTransversal(node* root);
@@ -43,15 +43,25 @@ node* BST::minValueNode(node* Node)
     return current;
 }
 
-node* BST::search(node* root, int key)
+bool BST::search(node* temp_root, int data)
 {
-    if(root==NULL || root->data == key)
-        return root;
-    if(root->data > key)
-        search(root->right, key);
-    else if(root->data < key)
-        search(root->left, key);
-}
+     bool is_found=false;
+
+     while(temp_root!=NULL){
+        if(data == temp_root->data){
+            is_found=true;
+            break;
+        }
+        else if(data <= temp_root->data){
+            temp_root=temp_root->left;
+        }
+        else if(data >= temp_root->data){
+            temp_root=temp_root->right;
+        }
+    }
+
+    return is_found;
+    }
 
 node* BST::insert(node* Node, int key)
 {
@@ -89,7 +99,7 @@ node* BST::deleteNode(node* root, int key)
 
         else if(root->right == NULL)
         {
-            node* temp = root->right;
+            node* temp = root->left;
             free(root);
             return temp;
         }
@@ -123,16 +133,53 @@ void BST::preorderTransversal(node* root)
 int main()
 {
     BST tree;
-    tree.insert(tree.getRoot(), 50);
-    tree.insert(tree.getRoot(), 30);
-    tree.insert(tree.getRoot(), 20);
-    tree.insert(tree.getRoot(), 40);
-    tree.insert(tree.getRoot(), 70);
-    tree.insert(tree.getRoot(), 60);
-    tree.insert(tree.getRoot(), 80);
-    tree.inorderTransversal(tree.getRoot());
-    tree.deleteNode(tree.getRoot(),50);
-    tree.inorderTransversal(tree.getRoot());
+
+    while(1)
+    {
+        int c;
+        cout<<"1. insert"<<endl;
+        cout<<"2. search"<<endl;
+        cout<<"3. delete"<<endl;
+        cout<<"4. inorder"<<endl;
+        cout<<"5. preorder"<<endl;
+        cout<<"6. exit"<<endl;
+        cin>>c;
+        if(c==1)
+        {
+            int k;
+            cout<<"enter value to insert"<<endl;
+            cin>>k;
+            tree.insert(tree.getRoot(), k);
+        }
+
+        if(c==2)
+        {
+            int k;
+            cout<<"enter value to search"<<endl;
+            cin>>k;
+            cout<<tree.search(tree.getRoot(), k)<<endl;
+        }
+
+        if(c==3)
+        {
+            int k;
+            cout<<"enter value to delete"<<endl;
+            cin>>k;
+            tree.deleteNode(tree.getRoot(), k);
+        }
+        if(c==4)
+        {
+            tree.inorderTransversal(tree.getRoot());
+        }
+        if(c==5)
+        {
+            tree.preorderTransversal(tree.getRoot());
+        }
+        if(c==6)
+        {
+            break;
+        }
+    }
 
 
     return 0;
