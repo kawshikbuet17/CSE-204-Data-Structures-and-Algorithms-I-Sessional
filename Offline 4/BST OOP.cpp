@@ -125,8 +125,8 @@ void BST::preorderTransversal(node* root)
     if(root!=NULL)
     {
         cout<<root->data<<endl;
-        inorderTransversal(root->left);
-        inorderTransversal(root->right);
+        preorderTransversal(root->left);
+        preorderTransversal(root->right);
     }
 }
 
