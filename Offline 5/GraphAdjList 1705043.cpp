@@ -319,7 +319,7 @@ bool Graph::hasCommonAdjacent(int u, int v)
     //returns true if vertices u and v have common adjacent vertices
     for(int i=0; i<nVertices; i++)
     {
-        if(adjList[u].searchItem(i)!=1 && adjList[v].searchItem(i)==1)
+        if(adjList[u].searchItem(i)==1 && adjList[v].searchItem(i)==1)
             return true;
     }
     return false;
