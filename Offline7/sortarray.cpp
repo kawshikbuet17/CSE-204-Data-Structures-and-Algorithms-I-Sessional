@@ -163,8 +163,10 @@ int main()
             else
             {
                 total = 0;
-                for(int i=0; i<10; i++)
+                for(int i=0; i<3; i++)
                 {
+                    for(int i=0; i<n; i++)
+                        arr[i]=copyArr[i];
                     t1 = chrono::high_resolution_clock::now();
                     mergeSort(arr, 0, n-1);
                     t2 = chrono::high_resolution_clock::now();
@@ -191,8 +193,10 @@ int main()
             else
             {
                 total = 0;
-                for(int i=0; i<10; i++)
+                for(int i=0; i<3; i++)
                 {
+                    for(int i=0; i<n; i++)
+                        arr[i]=copyArr[i];
                     t1 = chrono::high_resolution_clock::now();
                     quickSort(arr, 0, n-1);
                     t2 = chrono::high_resolution_clock::now();
@@ -214,4 +218,3 @@ int main()
         }
     }
 }
-
