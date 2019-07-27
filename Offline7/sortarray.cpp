@@ -91,7 +91,7 @@ void quickSort(int arr[], int p, int r)
 int main()
 {
     srand (time(NULL));
-    int choice, n;
+    int choice, n, count;
     int *arr, *copyArr;
     auto t1=chrono::high_resolution_clock::now();
     auto t2=chrono::high_resolution_clock::now();
@@ -116,7 +116,7 @@ int main()
 
             arr = new int[n];
             for(int i=0; i<n; i++)
-                arr[i] = rand()%100000;
+                arr[i] = rand()%1000000;
             copyArr = new int[n];
             for(int i=0; i<n; i++)
                 copyArr[i]=arr[i];
@@ -128,7 +128,7 @@ int main()
 
             arr = new int[n];
             for(int i=0; i<n; i++)
-                arr[i] = rand()%100000;
+                arr[i] = rand()%1000000;
             sort(arr, arr+n);
             copyArr = new int[n];
             for(int i=0; i<n; i++)
@@ -141,7 +141,7 @@ int main()
 
             arr = new int[n];
             for(int i=0; i<n; i++)
-                arr[i] = rand()%100000;
+                arr[i] = rand()%1000000;
             sort(arr, arr+n);
             reverseArr(arr,n);
             copyArr = new int[n];
@@ -151,7 +151,7 @@ int main()
 
         case 4:
             printf("Applying merge sort\n");
-            for(int i=0; i<n; i++)
+            /*for(int i=0; i<n; i++)
                 arr[i]=copyArr[i];
             if(n>=10000)
             {
@@ -161,9 +161,12 @@ int main()
                 t = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
             }
             else
-            {
+            {      */
                 total = 0;
-                for(int i=0; i<3; i++)
+                count = 1000000/n;
+                if(count==0)
+                    count=1;
+                for(int i=0; i<count; i++)
                 {
                     for(int i=0; i<n; i++)
                         arr[i]=copyArr[i];
@@ -173,15 +176,15 @@ int main()
                     t = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
                     total += t;
                 }
-                t = total/10;
-            }
+                t = total/count;
+            //}
 
             cout<<"Time taken to finish: "<<t<<" nanosec"<<endl;
             break;
 
         case 5:
             printf("Applying quicksort\n");
-            for(int i=0; i<n; i++)
+            /*for(int i=0; i<n; i++)
                 arr[i]=copyArr[i];
             if(n>=10000)
             {
@@ -191,9 +194,12 @@ int main()
                 t = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
             }
             else
-            {
+            {       */
                 total = 0;
-                for(int i=0; i<3; i++)
+                count = 1000000/n;
+                if(count==0)
+                    count=1;
+                for(int i=0; i<count; i++)
                 {
                     for(int i=0; i<n; i++)
                         arr[i]=copyArr[i];
@@ -203,8 +209,8 @@ int main()
                     t = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
                     total += t;
                 }
-                t = total/10;
-            }
+                t = total/count;
+            //}
 
             cout<<"Time taken to finish: "<<t<<" nanosec"<<endl;
             break;
