@@ -40,18 +40,66 @@ public:
 
     void print(int x)
     {
-        int temp = parent[x];
+        int temp = find_set(x);
         for(int i=0; i<MAXSIZE; i++)
         {
-            if(parent[i]==temp)
-                cout<<parent[i]<<" "<<endl;
+            if(find_set(i)==temp)
+                cout<<i<<" ";
         }
     }
 };
 
 int main()
 {
+    Disjoint_Set ds;
+    int x,y;
+    cout<<"----DISJOINT SET DATA STRUCTURE----"<<endl;
+    cout<<endl;
+    while(1)
+    {
+        cout<<"1.   Make Set"<<endl;
+        cout<<"2.   Find Set"<<endl;
+        cout<<"3.   Union Set"<<endl;
+        cout<<"4.   Print"<<endl;
+        cout<<"5.   Quit"<<endl;
+        cout<<">>> "<<endl;
+        int ch;
+        cin>>ch;
+        if(ch==1)
+        {
+            cout<<"Input value : ";
+            cin>>x;
+            ds.make_set(x);
+            cout<<endl;
+        }
+        else if(ch==2)
+        {
+            cout<<"You want to find : ";
+            cin>>x;
+            cout<<ds.find_set(x);
+            cout<<endl;
+        }
+        else if(ch==3)
+        {
+            cout<<"Make union between : ";
+            cin>>x>>y;
+            ds.union_set(x, y);
+            cout<<endl;
+        }
+        else if(ch==4)
+        {
+            cout<<"Select a set element : ";
+            cin>>x;
+            ds.print(x);
+            cout<<endl;
 
+        }
+        else if(ch==5)
+        {
+            cout<<"Program Ended"<<endl;
+            break;
+        }
+    }
 }
 
 
