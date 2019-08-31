@@ -7,11 +7,13 @@ class Disjoint_Set
 {
     int *parent = new int[MAXSIZE];
     int *rank = new int[MAXSIZE];
+    int yes = 0;
 public:
     void make_set(int x)
     {
         parent[x] = x;
         rank[x] = 0;
+        yes = 1;
     }
 
     int find_set(int x)
@@ -40,12 +42,20 @@ public:
 
     void print(int x)
     {
-        int temp = find_set(x);
-        for(int i=0; i<MAXSIZE; i++)
+        if(yes==1)
         {
-            if(find_set(i)==temp)
-                cout<<i<<" ";
+            int temp = find_set(x);
+            for(int i=0; i<MAXSIZE; i++)
+            {
+                if(find_set(i)==temp)
+                    cout<<i<<" ";
+            }
         }
+        else
+        {
+            cout<<"You didn't input anything..."<<endl;
+        }
+
     }
 };
 
